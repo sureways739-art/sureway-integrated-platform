@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sureway - Integrated Technology for Africa's Future</title>
+    <style>
+        :root {
+            --primary: #002855;
+            --secondary: #00A4EF;
+            --accent: #FF6B35;
+            --light: #F8F9FA;
+            --dark: #212529;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: var(--primary);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 50px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .language-switcher {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background: #e55a2b;
+        }
+        
+        /* Platforms Section */
+        .platforms {
+            padding: 80px 0;
+            background: var(--light);
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .platform-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Inclusive Design Styles */
+        .voice-command {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 20px;
+            margin: 10px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .icon-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 100px;
+        }
+        
+        .icon-button:hover {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .icon-button i {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .language-selector {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        
+        .language-option {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .language-option:hover {
+            border-color: var(--secondary);
+        }
+        
+        .language-option.active {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: white;
+        }
+        
+        /* Global Recognition */
+        .recognition {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .recognition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .recognition-card {
+            padding: 2rem;
+            border-left: 4px solid var(--secondary);
+            background: var(--light);
+            transition: transform 0.3s;
+        }
+        
+        .recognition-card:hover {
+            transform: translateX(5px);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: var(--light);
+        }
+        
+        .leadership {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .leadership-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Language-specific styles */
+        .language-content {
+            display: none;
+        }
+        
+        .language-content.active {
+            display: block;
+        }
+        
+        .ar-text {
+            direction: rtl;
+            text-align: right;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+    </style>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <img src="sureways-logo.png" alt="Sureway Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="#platforms" data-key="nav.platforms">Platforms</a></li>
+                <li><a href="#inclusive-design" data-key="nav.inclusive">Inclusive Design</a></li>
+                <li><a href="#recognition" data-key="nav.recognition">Global Recognition</a></li>
+                <li><a href="#about" data-key="nav.about">About Us</a></li>
+                <li><a href="#contact" data-key="nav.contact">Contact</a></li>
+                <li>
+                    <select class="language-switcher" id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ha">Hausa</option>
+                        <option value="yo">Yoruba</option>
+                        <option value="ig">Igbo</option>
+                        <option value="pidgin">Pidgin</option>
+                        <option value="fr">French</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 data-key="hero.title">Building Africa's Digital Trade & Energy Infrastructure</h1>
+            <p data-key="hero.subtitle">Integrated platforms powering the future of African commerce, logistics, and energy access</p>
+            <button class="cta-button" data-key="hero.cta">Join Our Ecosystem</button>
+        </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section id="platforms" class="platforms">
+        <div class="container">
+            <h2 data-key="platforms.title">Our Integrated Ecosystem</h2>
+            <div class="platform-grid">
+                <!-- Enhanced Cargo-Connect Card -->
+                <div class="platform-card">
+                    <div class="platform-icon">🚛</div>
+                    <h3 data-key="platforms.cargo.title">Cargo-Connect</h3>
+                    <p data-key="platforms.cargo.description">AI & Blockchain-powered logistics platform designed for ALL African drivers</p>
+                    
+                    <!-- Inclusive Features List -->
+                    <div style="text-align: left; margin-top: 1.5rem;">
+                        <p style="font-weight: bold; color: var(--primary); margin-bottom: 0.5rem;" data-key="platforms.cargo.featuresTitle">Built for Africa's Reality:</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin: 0.8rem 0; padding-left: 0;">
+                                <span style="color: var(--accent); font-weight: bold;">🎤</span>
+                                <strong data-key="platforms.cargo.voice">Voice Commands:</strong> 
+                                <span data-key="platforms.cargo.voiceDesc">Works in English, Pidgin, Hausa, Yoruba, Igbo, French</span>
+                            </li>
+                            <li style="margin: 0.8rem 0; padding-left: 0;">
+                                <span style="color: var(--accent); font-weight: bold;">👆</span>
+                                <strong data-key="platforms.cargo.interface">One-Tap Interface:</strong> 
+                                <span data-key="platforms.cargo.interfaceDesc">Big buttons, clear icons, no reading needed</span>
+                            </li>
+                            <li style="margin: 0.8rem 0; padding-left: 0;">
+                                <span style="color: var(--accent); font-weight: bold;">📱</span>
+                                <strong data-key="platforms.cargo.offline">Works Offline:</strong> 
+                                <span data-key="platforms.cargo.offlineDesc">Find loads even with poor internet</span>
+                            </li>
+                            <li style="margin: 0.8rem 0; padding-left: 0;">
+                                <span style="color: var(--accent); font-weight: bold;">🔊</span>
+                                <strong data-key="platforms.cargo.audio">Audio Guidance:</strong> 
+                                <span data-key="platforms.cargo.audioDesc">Voice instructions for every step</span>
+                            </li>
+                            <li style="margin: 0.8rem 0; padding-left: 0;">
+                                <span style="color: var(--accent); font-weight: bold;">🔄</span>
+                                <strong data-key="platforms.cargo.alerts">Visual & Sound Alerts:</strong> 
+                                <span data-key="platforms.cargo.alertsDesc">Know when you get paid or get a new load</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Interactive Demo Button -->
+                    <button onclick="showDriverDemo()" style="background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 1rem; cursor: pointer; transition: all 0.3s;" 
+                            onmouseover="this.style.transform='scale(1.05)'" 
+                            onmouseout="this.style.transform='scale(1)'"
+                            data-key="platforms.cargo.demoButton">
+                        See How It Works for Drivers
+                    </button>
+                </div>
+
+                <!-- Pay4Pump Card -->
+                <div class="platform-card">
+                    <div class="platform-icon">⛽</div>
+                    <h3 data-key="platforms.pay4pump.title">Pay4Pump</h3>
+                    <p data-key="platforms.pay4pump.description">Digital fuel management system ensuring reliable energy access across Africa</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li data-key="platforms.pay4pump.feature1">Pre-booking & pre-payment</li>
+                        <li data-key="platforms.pay4pump.feature2">Real-time inventory</li>
+                        <li data-key="platforms.pay4pump.feature3">Cross-border payments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inclusive Design Section -->
+    <section id="inclusive-design" style="padding: 80px 0; background: var(--light);">
+        <div class="container">
+            <h2 data-key="inclusive.title">Built for Everyone: Inclusive by Design</h2>
+            <p data-key="inclusive.subtitle">We've designed our platforms specifically for Africa's diverse users, including drivers with literacy challenges</p>
+            
+            <div class="recognition-card" style="margin: 2rem 0;">
+                <h4 data-key="inclusive.voice.title">Voice-First Interface</h4>
+                <div class="voice-command" onclick="demoVoiceCommand()">
+                    <i class="fas fa-microphone" style="color: var(--accent);"></i>
+                    <span data-key="inclusive.voice.demo">"Hey Sureway, find loads to Lagos"</span>
+                </div>
+                <p data-key="inclusive.voice.description">Drivers can use voice commands in local languages for all platform functions</p>
+            </div>
+
+            <div class="recognition-card" style="margin: 2rem 0;">
+                <h4 data-key="inclusive.icons.title">Icon-Based Navigation</h4>
+                <div class="demo-grid">
+                    <div class="icon-button" onclick="showIconDemo('find loads')">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span data-key="inclusive.icons.findLoads">Find Loads</span>
+                    </div>
+                    <div class="icon-button" onclick="showIconDemo('get fuel')">
+                        <i class="fas fa-gas-pump"></i>
+                        <span data-key="inclusive.icons.getFuel">Get Fuel</span>
+                    </div>
+                    <div class="icon-button" onclick="showIconDemo('get paid')">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span data-key="inclusive.icons.getPaid">Get Paid</span>
+                    </div>
+                    <div class="icon-button" onclick="showIconDemo('help')">
+                        <i class="fas fa-phone"></i>
+                        <span data-key="inclusive.icons.help">Help</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recognition-card" style="margin: 2rem 0;">
+                <h4 data-key="inclusive.languages.title">Multi-Language Support</h4>
+                <div class="language-selector">
+                    <div class="language-option active" onclick="switchLanguage('en')">English</div>
+                    <div class="language-option" onclick="switchLanguage('ha')">Hausa</div>
+                    <div class="language-option" onclick="switchLanguage('yo')">Yoruba</div>
+                    <div class="language-option" onclick="switchLanguage('ig')">Igbo</div>
+                    <div class="language-option" onclick="switchLanguage('pidgin')">Pidgin</div>
+                    <div class="language-option" onclick="switchLanguage('fr')">French</div>
+                </div>
+                <p data-key="inclusive.languages.description">Full platform available in major African languages and dialects</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div class="platform-card">
+                    <i class="fas fa-volume-up" style="font-size: 2rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                    <h4 data-key="inclusive.features.audio">Audio Instructions</h4>
+                    <p data-key="inclusive.features.audioDesc">Every action has audio guidance and confirmation</p>
+                </div>
+                <div class="platform-card">
+                    <i class="fas fa-mobile-alt" style="font-size: 2rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                    <h4 data-key="inclusive.features.offline">Offline Functionality</h4>
+                    <p data-key="inclusive.features.offlineDesc">Works in areas with poor internet connectivity</p>
+                </div>
+                <div class="platform-card">
+                    <i class="fas fa-hands-helping" style="font-size: 2rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                    <h4 data-key="inclusive.features.training">Community Training</h4>
+                    <p data-key="inclusive.features.trainingDesc">On-ground training hubs at major truck parks</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Recognition -->
+    <section id="recognition" class="recognition">
+        <div class="container">
+            <h2 data-key="recognition.title">Global Recognition & Strategic Alignment</h2>
+            <div class="recognition-grid">
+                <div class="recognition-card">
+                    <h4>World Economic Forum</h4>
+                    <p data-key="recognition.wef">Aligned with WEF's Global Future Councils on Digital Public Infrastructure, Cybersecurity, and International Trade</p>
+                </div>
+                <div class="recognition-card">
+                    <h4>Harvard Business Review</h4>
+                    <p data-key="recognition.hbr">Implementing HBR's insights on AI cybersecurity and digital transformation strategies</p>
+                </div>
+                <div class="recognition-card">
+                    <h4>Microsoft</h4>
+                    <p data-key="recognition.microsoft">Built on Microsoft Azure with AI capabilities aligned with global security standards</p>
+                </div>
+                <div class="recognition-card">
+                    <h4>AfCFTA & PAPSS</h4>
+                    <p data-key="recognition.afcfta">Designed to leverage African Continental Free Trade Area and Pan-African Payment Settlement System frameworks</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 data-key="about.title">About Sureway</h2>
+            <p data-key="about.description">Sureway Integrated Technology Solutions Limited is building the foundational digital infrastructure for Africa's economic revolution, solving critical challenges in logistics, energy access, and financial inclusion.</p>
+            
+            <div style="margin: 3rem 0;">
+                <h3 data-key="about.visionTitle">Our Vision</h3>
+                <p data-key="about.vision">To become Africa's most trusted technology ecosystem, powering seamless trade and energy access while driving inclusive economic growth across the continent.</p>
+                
+                <h3 style="margin-top: 2rem;" data-key="about.missionTitle">Our Mission</h3>
+                <p data-key="about.mission">To solve Africa's most critical infrastructural challenges by building secure, AI-driven platforms that create a connected ecosystem where commerce and energy flow freely.</p>
+            </div>
+            
+            <div class="leadership">
+                <img src="abdulazeez-profile.jpg" alt="Abdulazeez Yusuf" class="leadership-img">
+                <div>
+                    <h3>Abdulazeez Yusuf</h3>
+                    <p><strong data-key="about.ceoTitle">Founder & CEO</strong></p>
+                    <p data-key="about.ceoDescription">Visionary technologist with expertise in blockchain, cloud infrastructure, and cross-border regulatory frameworks. Alumni of Microsoft Build 2025, 3MTT Fellow, and dedicated to building Africa's digital future.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="padding: 80px 0; background: white;">
+        <div class="container">
+            <h2 data-key="contact.title">Get In Touch</h2>
+            <div style="max-width: 600px; margin: 2rem auto;">
+                <p><strong data-key="contact.email">Email:</strong> sureways739@gmail.com</p>
+                <p><strong data-key="contact.phone">Phone:</strong> +234 803 523 3588</p>
+                <p><strong data-key="contact.company">Company:</strong> Sureway Integrated Technology Solutions Ltd. (RC 8481374)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <img src="sureways-logo.png" alt="Sureway Logo" style="height: 40px; margin-bottom: 1rem;">
+                    <p data-key="footer.tagline">Transforming African commerce through integrated technology solutions</p>
+                </div>
+                <div>
+                    <h4 data-key="footer.connect">Connect</h4>
+                    <p>Email: sureways739@gmail.com</p>
+                    <p>Phone: +234 803 523 3588</p>
+                </div>
+                <div>
+                    <h4 data-key="footer.explore">Explore</h4>
+                    <p><a href="#platforms" style="color: white;" data-key="nav.platforms">Our Solutions</a></p>
+                    <p><a href="#about" style="color: white;" data-key="nav.about">About Us</a></p>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p>&copy; 2025 Sureway Integrated Technology Solutions. <span data-key="footer.rights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                // Navigation
+                'nav.platforms': 'Platforms',
+                'nav.inclusive': 'Inclusive Design',
+                'nav.recognition': 'Global Recognition',
+                'nav.about': 'About Us',
+                'nav.contact': 'Contact',
+                
+                // Hero
+                'hero.title': 'Building Africa\'s Digital Trade & Energy Infrastructure',
+                'hero.subtitle': 'Integrated platforms powering the future of African commerce, logistics, and energy access',
+                'hero.cta': 'Join Our Ecosystem',
+                
+                // Platforms
+                'platforms.title': 'Our Integrated Ecosystem',
+                'platforms.cargo.title': 'Cargo-Connect',
+                'platforms.cargo.description': 'AI & Blockchain-powered logistics platform designed for ALL African drivers',
+                'platforms.cargo.featuresTitle': 'Built for Africa\'s Reality:',
+                'platforms.cargo.voice': 'Voice Commands:',
+                'platforms.cargo.voiceDesc': 'Works in English, Pidgin, Hausa, Yoruba, Igbo, French',
+                'platforms.cargo.interface': 'One-Tap Interface:',
+                'platforms.cargo.interfaceDesc': 'Big buttons, clear icons, no reading needed',
+                'platforms.cargo.offline': 'Works Offline:',
+                'platforms.cargo.offlineDesc': 'Find loads even with poor internet',
+                'platforms.cargo.audio': 'Audio Guidance:',
+                'platforms.cargo.audioDesc': 'Voice instructions for every step',
+                'platforms.cargo.alerts': 'Visual & Sound Alerts:',
+                'platforms.cargo.alertsDesc': 'Know when you get paid or get a new load',
+                'platforms.cargo.demoButton': 'See How It Works for Drivers',
+                
+                'platforms.pay4pump.title': 'Pay4Pump',
+                'platforms.pay4pump.description': 'Digital fuel management system ensuring reliable energy access across Africa',
+                'platforms.pay4pump.feature1': 'Pre-booking & pre-payment',
+                'platforms.pay4pump.feature2': 'Real-time inventory',
+                'platforms.pay4pump.feature3': 'Cross-border payments',
+                
+                // Inclusive Design
+                'inclusive.title': 'Built for Everyone: Inclusive by Design',
+                'inclusive.subtitle': 'We\'ve designed our platforms specifically for Africa\'s diverse users, including drivers with literacy challenges',
+                'inclusive.voice.title': 'Voice-First Interface',
+                'inclusive.voice.demo': '"Hey Sureway, find loads to Lagos"',
+                'inclusive.voice.description': 'Drivers can use voice commands in local languages for all platform functions',
+                'inclusive.icons.title': 'Icon-Based Navigation',
+                'inclusive.icons.findLoads': 'Find Loads',
+                'inclusive.icons.getFuel': 'Get Fuel',
+                'inclusive.icons.getPaid': 'Get Paid',
+                'inclusive.icons.help': 'Help',
+                'inclusive.languages.title': 'Multi-Language Support',
+                'inclusive.languages.description': 'Full platform available in major African languages and dialects',
+                'inclusive.features.audio': 'Audio Instructions',
+                'inclusive.features.audioDesc': 'Every action has audio guidance and confirmation',
+                'inclusive.features.offline': 'Offline Functionality',
+                'inclusive.features.offlineDesc': 'Works in areas with poor internet connectivity',
+                'inclusive.features.training': 'Community Training',
+                'inclusive.features.trainingDesc': 'On-ground training hubs at major truck parks',
+                
+                // Recognition
+                'recognition.title': 'Global Recognition & Strategic Alignment',
+                'recognition.wef': 'Aligned with WEF\'s Global Future Councils on Digital Public Infrastructure, Cybersecurity, and International Trade',
+                'recognition.hbr': 'Implementing HBR\'s insights on AI cybersecurity and digital transformation strategies',
+                'recognition.microsoft': 'Built on Microsoft Azure with AI capabilities aligned with global security standards',
+                'recognition.afcfta': 'Designed to leverage African Continental Free Trade Area and Pan-African Payment Settlement System frameworks',
+                
+                // About
+                'about.title': 'About Sureway',
+                'about.description': 'Sureway Integrated Technology Solutions Limited is building the foundational digital infrastructure for Africa\'s economic revolution, solving critical challenges in logistics, energy access, and financial inclusion.',
+                'about.visionTitle': 'Our Vision',
+                'about.vision': 'To become Africa\'s most trusted technology ecosystem, powering seamless trade and energy access while driving inclusive economic growth across the continent.',
+                'about.missionTitle': 'Our Mission',
+                'about.mission': 'To solve Africa\'s most critical infrastructural challenges by building secure, AI-driven platforms that create a connected ecosystem where commerce and energy flow freely.',
+                'about.ceoTitle': 'Founder & CEO',
+                'about.ceoDescription': 'Visionary technologist with expertise in blockchain, cloud infrastructure, and cross-border regulatory frameworks. Alumni of Microsoft Build 2025, 3MTT Fellow, and dedicated to building Africa\'s digital future.',
+                
+                // Contact
+                'contact.title': 'Get In Touch',
+                'contact.email': 'Email',
+                'contact.phone': 'Phone',
+                'contact.company': 'Company',
+                
+                // Footer
+                'footer.tagline': 'Transforming African commerce through integrated technology solutions',
+                'footer.connect': 'Connect',
+                'footer.explore': 'Explore',
+                'footer.rights': 'All rights reserved.'
+            },
+            ha: {
+                'nav.platforms': 'Dandamali',
+                'nav.inclusive': 'Zane na Haɗawa',
+                'hero.title': 'Gina Kayayyakin Ciniki na Digital na Afirka da Kayayyakin Makamashi',
+                'hero.subtitle': 'Dandamali masu haɗaka suna ba da ƙarfi ga makomar kasuwancin Afirka, dabaru, da samun damar makamashi'
+            },
+            yo: {
+                'nav.platforms': 'Awọn ilana',
+                'nav.inclusive': 'Apẹrẹ Iṣepọ',
+                'hero.title': 'N ṣiṣẹ Awọn Infrastrukti Digital Afirka ati Agbara Afirka',
+                'hero.subtitle': 'Awọn ilana afikun ti n pese agbara si ọjọ iwaju iṣowo Afirka, awọn ilana logistiks, ati iwulo agbara'
+            },
+            ig: {
+                'nav.platforms': 'Usoro',
+                'nav.inclusive': 'Nhazi nke Na-esonye',
+                'hero.title': 'Na-ewu Akụrụngwa Azụmahịa Digital nke Africa na Akụrụngwa Ike',
+                'hero.subtitle': 'Usoro jikọtara ọnụ na-enye ike maka ọdịnihu azụmahịa Africa, ngwa ngwa, na ịnweta ike'
+            },
+            pidgin: {
+                'nav.platforms': 'Platform Dem',
+                'nav.inclusive': 'Design Wey Dey Include Everybody',
+                'hero.title': 'De Build Africa Digital Trade and Energy Infrastructure',
+                'hero.subtitle': 'Integrated platforms wey dey power di future of African commerce, logistics, and energy access'
+            },
+            fr: {
+                'nav.platforms': 'Plateformes',
+                'nav.inclusive': 'Conception Inclusive',
+                'hero.title': 'Construire l\'Infrastructure Numérique et Énergétique de l\'Afrique',
+                'hero.subtitle': 'Des plateformes intégrées alimentant l\'avenir du commerce africain, de la logistique et de l\'accès à l\'énergie'
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'en';
+
+        // Switch language function
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            document.getElementById('languageSelect').value = lang;
+            
+            // Update all elements with data-key attribute
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update active language in selector
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.textContent.toLowerCase().includes(lang)) {
+                    option.classList.add('active');
+                }
+            });
+        }
+
+        // Demo functions
+        function showDriverDemo() {
+            const demos = {
+                en: "HOW A DRIVER USES CARGO-CONNECT:\n\n1. 🎤 Driver says: 'Hey Sureway, find me loads to Lagos'\n2. 👆 App shows big buttons with pictures of different load types\n3. 📱 Driver taps the container truck icon\n4. 🔊 App says: 'Found 5 loads to Lagos. Tap to see details'\n5. 💰 Driver taps accept, app says: 'Load confirmed! Payment secured via blockchain'\n\n✅ No reading required ✅ Works in their language ✅ Simple taps only",
+                ha: "YAYA DIREBA YAKA AMFANI DA CARGO-CONNECT:\n\n1. 🎤 Direba ya ce: 'Kai Sureway, nemo min kaya zuwa Legas'\n2. 👆 App yana nuna manyan maɓallai tare da hotuna na nau'ikan kaya daban-daban\n3. 📱 Direba ya danna alamar motar kwantena\n4. 🔊 App ya ce: 'An sami kaya 5 zuwa Legas. Danna don ganin cikakkun bayanai'\n5. 💰 Direba ya danna karɓa, app ya ce: 'Kaya an tabbatar! An tsare biyan kuɗi ta hanyar blockchain'\n\n✅ Ba a buƙatar karatu ✅ Yana aiki cikin yarensu ✅ Dannawa mai sauƙi kawai",
+                yo: "BI A TI ṢE NLO CARGO-CONNECT FUN Diraifa:\n\n1. 🎤 Daraifa sọ pé: 'Hey Sureway, wá ìjúṣe fún mi sí Lagos'\n2. 👆 App fihan awọn bọtini nla pẹlu awọn aworan ti o yatọ si iru ijuse\n3. 📱 Daraifa tẹ aami ọkọ ile-iṣẹ kan\n4. 🔊 App sọ pé: 'A ri ijuse 5 sí Lagos. Tẹ lati ri awọn alaye'\n5. 💰 Daraifa tẹ gba, app sọ pé: 'Ijuse ti jẹrisi! Isanwo ti ni aabo nipasẹ blockchain'\n\n✅ Ko si ewi kika nilo ✅ Ṣiṣẹ ni ede wọn ✅ Rọrun tẹtẹ nikan"
+            };
+            
+            alert(demos[currentLanguage] || demos.en);
+        }
+
+        function demoVoiceCommand() {
+            const voiceDiv = document.querySelector('.voice-command');
+            voiceDiv.style.background = 'var(--accent)';
+            voiceDiv.style.color = 'white';
+            
+            setTimeout(() => {
+                voiceDiv.style.background = '#e3f2fd';
+                voiceDiv.style.color = 'black';
+            }, 2000);
+        }
+
+        function showIconDemo(action) {
+            const messages = {
+                en: `Opening: ${action} - Designed for easy one-tap access!`,
+                ha: `Buɗewa: ${action} - An tsara shi don sauƙin samun damar dannawa ɗaya!`,
+                yo: `Ṣiṣi: ${action} - Ti a ṣe apẹrẹ fun iwulo tẹtẹ kan!`
+            };
+            alert(messages[currentLanguage] || messages.en);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Language selector event
+            document.getElementById('languageSelect').addEventListener('change', function() {
+                switchLanguage(this.value);
+            });
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Waitlist form
+            document.querySelector('.cta-button').addEventListener('click', function() {
+                const email = prompt('Enter your email to join our waitlist:');
+                if (email) {
+                    alert('Thank you! We will contact you soon about our pilot program.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
